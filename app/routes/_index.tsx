@@ -1,41 +1,22 @@
-import type { MetaFunction } from "@remix-run/node";
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
-};
+import {Form} from "@remix-run/react";
+import {SocialsProvider} from "remix-auth-socials";
 
 export default function Index() {
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
+      <>
+          <Form
+              method="post"
+              action={`/auth/${SocialsProvider.GOOGLE}`}
           >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
+              <button>Login with Google</button>
+          </Form>
+          <Form
+              method="post"
+              action={`/auth/${SocialsProvider.MICROSOFT}`}
           >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
+              <button>Login with Microsoft</button>
+          </Form>
+      </>
+
   );
 }
